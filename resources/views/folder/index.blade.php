@@ -89,7 +89,7 @@
     <!-- Custom Context Menu -->
     <div id="customContextMenu" class="hidden absolute bg-white shadow-md rounded-lg p-2 border border-gray-200">
         <ul class="text-sm">
-            @if (str_contains($folder, 'trash'))
+            @if (isset($folder) && str_contains($folder, 'trash'))
                 <li class="p-2 hover:bg-gray-200 cursor-pointer" id="restoreFile">Restore</li>
             @endif
             <li class="p-2 hover:bg-gray-200 cursor-pointer" id="openFile">Open</li>
@@ -126,7 +126,7 @@
             });
 
             // Restore File
-            @if(str_contains($folder, 'trash'))
+            @if(isset($folder) && str_contains($folder, 'trash'))
                 document.getElementById('restoreFile').addEventListener('click', function() {
                     if (selectedFile) {
                         const fileName = selectedFile.split('/').pop();
