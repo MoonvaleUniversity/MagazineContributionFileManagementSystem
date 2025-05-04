@@ -54,7 +54,7 @@
         @if (isset($filesInFolder) && count($filesInFolder) > 0)
             @foreach ($filesInFolder as $file)
                 @if (\Illuminate\Support\Str::endsWith(strtolower($file), ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg']))
-                    <a href="{{ asset('storage/' . $file) }}" target="_blank" data-file="{{ $file }}"
+                    <a href="{{ route('file.view',$file) }}" target="_blank" data-file="{{ $file }}"
                         data-file-type="file"
                         class="file-link flex flex-col bg-white p-4 rounded-lg shadow items-center col-span-2 justify-between h-32 relative group">
                         <img class="w-16" src="{{ asset('images/image.jpg') }}" />
@@ -68,7 +68,7 @@
                         </p>
                     </a>
                 @elseif(\Illuminate\Support\Str::endsWith(strtolower($file), ['doc', 'docx', 'pdf', 'txt', 'odt', 'rtf', 'tex']))
-                    <a href="{{ asset('storage/' . $file) }}" target="_blank" data-file="{{ $file }}"
+                    <a href="{{ route('file.view',$file) }}" target="_blank" data-file="{{ $file }}"
                         data-file-type="file"
                         class="file-link flex flex-col bg-white p-4 rounded-lg shadow items-center col-span-2 justify-between h-32 relative group">
                         <img class="w-16" src="{{ asset('images/word.png') }}" />
