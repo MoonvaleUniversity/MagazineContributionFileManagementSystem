@@ -18,7 +18,7 @@ class AuthenticationController extends Controller
     {
         $validatedData = $request->validated();
         if (Auth::attempt($validatedData)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('folder.view');
         } else {
             return redirect()->back()->withErrors(['email' => 'The credentials you provided do not exist.']);
         }

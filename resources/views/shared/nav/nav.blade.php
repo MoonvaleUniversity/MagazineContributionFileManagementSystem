@@ -7,8 +7,6 @@
         </div>
     </div>
     <div class="flex gap-16 me-8">
-        <a class="font-bold {{ Route::is('dashboard') ? 'text-orange-200' : '' }}"
-            href="{{ route('dashboard') }}">Home</a>
         <a class="font-bold" href="{{ route('folder.view') }}">Files</a>
     </div>
 </div>

@@ -200,4 +200,15 @@ class FileAndFolderController extends Controller
         }
         return response()->json(['url' => $url]);
     }
+
+    public function deleteFile(Request $request)
+    {
+        $validatedData = $request->validate([
+            'file_url' => 'required|url'
+        ]);
+
+        $this->fileUploadService->delete($validatedData['file_url']);
+
+        return response()->json(['success' => true]);
+    }
 }

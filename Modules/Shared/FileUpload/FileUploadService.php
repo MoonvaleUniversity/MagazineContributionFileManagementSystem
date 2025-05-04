@@ -83,7 +83,16 @@ class FileUploadService implements FileUploadServiceInterface
         $filePath = parse_url($url)['path'];
         if ($this->disk === 'public') {
             $filePath = str_replace('/storage', '', $filePath);
+        } elseif ($this->disk === 'private') {
+            $filePath = ltrim(str_replace('/file/', '', $filePath), '/');
+
+            $filePath = urldecode($filePath);
         }
-        return Storage::disk($this->disk)->delete($filePath);
+        
+        if (Storage::disk($this->disk)->exists($filePath)) {
+            return Storage::disk($this->disk)->delete($filePath);
+        } else {
+            return true;
+        }
     }
 }
