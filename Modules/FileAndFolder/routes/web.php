@@ -12,3 +12,5 @@ Route::get('/delete-file/{type}/{file}', [FileAndFolderController::class, 'destr
 Route::get('/file/{filename}', [FileAndFolderController::class, 'showFile'])->where('filename', '.*')->name('file.view');
 
 Route::get('/restore-file/{type}/{path}', [FileAndFolderController::class, 'restoreFile'])->where('path', '.*')->name('file.restore');
+
+Route::get('/permenent-delete/{type}/{file}', [FileAndFolderController::class, 'permenentDelete'])->where('file', '.*');

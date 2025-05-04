@@ -169,14 +169,25 @@
             });
 
             document.getElementById('deleteFile').addEventListener('click', function() {
-                if (selectedFile && confirm('Are you sure you want to delete this file?')) {
-                    const fileName = selectedFile.split('/').pop();
-                    const link = document.createElement('a');
-                    link.href = `/delete-file/${selectedFileType}/${selectedFile}`;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
+                @if(isset($folder) && str_contains($folder, 'trash'))
+                    if (selectedFile && confirm('Are you sure you want to delete this file?')) {
+                        const fileName = selectedFile.split('/').pop();
+                        const link = document.createElement('a');
+                        link.href = `/permenent-delete/${selectedFileType}/${selectedFile}`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                @else
+                    if (selectedFile && confirm('Are you sure you want to delete this file?')) {
+                        const fileName = selectedFile.split('/').pop();
+                        const link = document.createElement('a');
+                        link.href = `/delete-file/${selectedFileType}/${selectedFile}`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                @endif
             });
         });
     </script>

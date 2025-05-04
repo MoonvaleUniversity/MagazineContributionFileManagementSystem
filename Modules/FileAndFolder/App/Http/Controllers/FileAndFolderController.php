@@ -124,6 +124,24 @@ class FileAndFolderController extends Controller
 
         return redirect()->back();
     }
+
+    public function permenentDelete($type, $path)
+    {
+        if (!Storage::disk('private')->exists($path)) {
+            dd("file not exist");
+        }
+
+        if($type == 'file') {
+            DeletedFilesAndFolders::where('name', basename($path))->delete();
+            Storage::disk('private')->delete($path);
+        } elseif ($type == 'folder') {
+            DeletedFilesAndFolders::where('path', dirname($path))->delete();
+            Storage::disk('private')->deleteDirectory($path);
+        }
+
+        return redirect()->back();
+    }
+
     public function restoreFile($type, $path)
     {
         $segments = explode('/', $path);
