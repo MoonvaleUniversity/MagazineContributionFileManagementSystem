@@ -14,3 +14,11 @@ Route::get('/file/{filename}', [FileAndFolderController::class, 'showFile'])->wh
 Route::get('/restore-file/{type}/{path}', [FileAndFolderController::class, 'restoreFile'])->where('path', '.*')->name('file.restore');
 
 Route::get('/permenent-delete/{type}/{file}', [FileAndFolderController::class, 'permenentDelete'])->where('file', '.*');
+
+Route::get('/', function() {
+    if(Auth::check()) {
+        return redirect()->route('folder.view');
+    } else {
+        return redirect()->route('login');
+    }
+})
