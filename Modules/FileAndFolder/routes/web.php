@@ -21,4 +21,4 @@ Route::get('/', function() {
     } else {
         return redirect()->route('login');
     }
-})
+});
